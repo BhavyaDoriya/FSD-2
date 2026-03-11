@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<p id="p1"></p>
+<script>
+    function main(cb) {
+        cb("Operation 1");
+
+        setTimeout(() => cb("Operation end"), 5000);
+        setTimeout(() => cb("Operation 2"), 1000);
+    }
+    function fun(result) {
+        document.getElementById("p1").innerText = result
+    }
+    main(fun)
+</script>
+
+<body>
+
+</body>
+
+</html>

@@ -22,5 +22,6 @@ for(x in sub){
     }
 }
 var a=[{"name":"samil","age":25},{"name":"shubhra","age":30},{"name":"jyoti","age":28}]
+.
 a.sort((a,b)=>b.age-a.age);
 console.log(a)
