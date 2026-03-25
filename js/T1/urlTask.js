@@ -41,3 +41,4 @@ var q=u.parse(addr,true)
 fs=require("fs")
 let host=q.host.slice(4)
 fs.writeFileSync("../../util/Task2result.txt",`user search ${q.query.oq} on ${host} `)
+// netstat -ano to retrieve info of all ports
