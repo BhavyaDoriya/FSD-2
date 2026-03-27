@@ -207,24 +207,40 @@ const http=require("http")
 // stock at Rs.50 per share and later sold them at Rs.60 per share. The script should utilize the HTTP module to create an
 //  HTTP server that serves the profit or loss details. If there is a profit, the message should be displayed in green color,
 //   and if there is a loss, it should be displayed in red color on server.
+// let server=http.createServer((req,res)=>{
+//     var numofshares=100
+//     var stockbuyingprice=50
+//     var stocksellingprice=60
+//     var totalbuyingcost=numofshares*stockbuyingprice
+//     var totalsellingincome=numofshares*stocksellingprice
+//     var profit=totalsellingincome-totalbuyingcost
+//     if(profit>0){
+//         res.writeHeader(200,{"Content-Type":"text/html"})
+
+//         res.write("<html><body><p style='color:green;font-size:40px'>You have profit</p></body>")
+//         res.end()
+//     }
+//     else{
+//         res.writeHeader(200,{"Content-Type":"text/html"})
+
+//         res.write("<html><body><p style='color:red;font-size:40px'>You have loss</p></body>")
+//         res.end()
+//     }
+// })
+// server.listen(5007)
 let server=http.createServer((req,res)=>{
-    var numofshares=100
-    var stockbuyingprice=50
-    var stocksellingprice=60
-    var totalbuyingcost=numofshares*stockbuyingprice
-    var totalsellingincome=numofshares*stocksellingprice
-    var profit=totalsellingincome-totalbuyingcost
-    if(profit>0){
-        res.writeHeader(200,{"Content-Type":"text/html"})
-
-        res.write("<html><body><p style='color:green;font-size:40px'>You have profit</p></body>")
-        res.end()
+    fs=require("fs")
+    if(req.url=="/"){
+        res.writeHead(200,{"Content-Type":"text/html"})
+        var htmlcontent=fs.readFileSync("../../html/T1/linkcss.html")
+        res.end(htmlcontent)
     }
-    else{
-        res.writeHeader(200,{"Content-Type":"text/html"})
+    else if(req.url=="/linkcss.css"){
+        res.writeHead(200,{"Content-Type":"text/css"})
+        var csscontent=fs.readFileSync("../../css/T1/linkcss.css")
+        res.end(csscontent)
 
-        res.write("<html><body><p style='color:red;font-size:40px'>You have loss</p></body>")
-        res.end()
     }
+
 })
 server.listen(5007)
