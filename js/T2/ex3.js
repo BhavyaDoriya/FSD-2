@@ -1,6 +1,8 @@
 //Routing in Express.js
+//Routing in express js has been made clearer from http cauase this one does not have nested if and else routing
 var expr=require("express")
 var app=expr()
+//Same as node.js http
 app.get("/",(req,res)=>{
     res.send("<h1>This is home page</h1>")
 })
