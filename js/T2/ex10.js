@@ -7,7 +7,7 @@ utilPath=path.join(__dirname,"../../util")
 //when we want to use css file which is not in the same directory as html file
 //if you command the code below on line 8 then it will not give any css styling
 app.use(expr.static(cssPath))
-app.use(expr.static(utilPath))
+app.use(expr.static(utilPath)).
 app.get("/",(req,res)=>{
     res.sendFile(htmlPath+"index.html")
 })

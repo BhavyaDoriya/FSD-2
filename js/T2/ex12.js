@@ -1,0 +1,12 @@
+//Cookies
+expr=require("express")
+app=expr()
+cp=require("cookie-parser")
+app.use(cp())
+app.get("/data",(req,res)=>{
+    res.cookie("name","express")
+    res.cookie("age",30)
+    res.cookie("email","exp@gmail.com",{maxAge:20000})  
+    res.send(req.cookies)  
+})
+app.listen(5006)
