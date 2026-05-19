@@ -19,6 +19,7 @@ var mailOption={
     to:process.env.GMAIL_TO,
     subject:"Song",
     html:"<h1>What if we could rewrite the stars</h1>"
+    
 }
 trans.sendMail(mailOption,(err,info)=>{
     if(err){

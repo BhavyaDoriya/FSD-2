@@ -14,7 +14,7 @@
 //     res.type("text/html")
 
 //     req.session.fname=req.query.uname
-//     req.session.pass=req.query.pass
+//     req.session.paqueryss=req..pass
 //     res.redirect("/fetch")
 // })
 // app.get("/fetch",(req,res)=>{
