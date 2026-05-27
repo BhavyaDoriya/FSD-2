@@ -30,6 +30,9 @@ import Props1 from "./Props1.jsx"
 import Props2 from "./Props2.jsx"
 import ProductList from "./ProductList.jsx"
 import Event from "./Event.jsx"
+import HomeWorkProductList from "./HomeWorkProductList.jsx"
+import Event2 from "./Event2.jsx"
+import MainR from "./components/MainR.jsx"
 //outer comment is just like javascript comment and inner comment in return statement of below function is jsx comment.
 function App() {
   // *****************************************************For basic knowledge and for App2.jsx file*************************************************
@@ -125,11 +128,24 @@ return (
     // Use a ProductList component to store product data and display multiple ProductCard components using .map().
     
   */}
-  <ProductList />
+  {/* <ProductList /> */}
 
 
   {/* Event */}
-  <Event />
+  {/* <Event /> */}
+
+  {/* Homework Question */}
+  {/* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+  <body className="bg-dark">
+      <HomeWorkProductList />
+
+  </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script> */}
+  {/* <Event2 /> */}
+
+
+  {/*****************************************************************Routing**************************************************************** */}
+  <MainR/>
   </>
 
 )
