@@ -10,6 +10,11 @@ import RandomImage  from './RandomImage.jsx'
 import Form1 from './Form1.jsx'
 import Form2 from './Form2.jsx'
 import Form3 from './Form3.jsx'
+import Todo from './Todo.jsx'
+import UseStateTask10 from './UseStateTask10.jsx'
+import UseStateTask11 from './UseStateTask11.jsx'
+import UseStateTask13 from './UseStateTask13.jsx'
+import UseReducer from './UseReducer.jsx'
 export default function MainR() {
 
   return (
@@ -71,8 +76,15 @@ export default function MainR() {
         {/* <UseStateTask3 /> */}
           {/* <RandomImage/> */}
           {/* <Form1/> */}
-          <Form2/>
-          <Form3 />
+          {/* <Form2/>
+          <Form3 /> */}
+
+
+          {/* <Todo /> */}
+          {/* <UseStateTask10 /> */}
+          {/* <UseStateTask11/> */}
+          {/* <UseStateTask13 /> */}
+          <UseReducer />
     </div>
 
 
