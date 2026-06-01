@@ -1,6 +1,8 @@
 import React, { useReducer } from 'react'
 
 export default function UseReducer() {
+  // if you are declaring function using ecma script then you must define function before using userReducer. 
+  // but if you are declaring function using function keyword then you can define function after using userReducer
     const reducer=(state,action)=>{
         if(action.type==="increment"){return state+1}
         if(action.type==="decrement"){return state-1}

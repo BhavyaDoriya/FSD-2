@@ -15,6 +15,10 @@ import UseStateTask10 from './UseStateTask10.jsx'
 import UseStateTask11 from './UseStateTask11.jsx'
 import UseStateTask13 from './UseStateTask13.jsx'
 import UseReducer from './UseReducer.jsx'
+import UseReducer2 from './UseReducer2.jsx'
+import UC1 from './UC1.jsx'
+import UC4 from './UC4.jsx'
+import UCTask2 from './UCTask2.jsx'
 export default function MainR() {
 
   return (
@@ -84,7 +88,11 @@ export default function MainR() {
           {/* <UseStateTask10 /> */}
           {/* <UseStateTask11/> */}
           {/* <UseStateTask13 /> */}
-          <UseReducer />
+          {/* <UseReducer />
+          <UseReducer2 /> */}
+          {/* <UC1/>
+          <UC4/> */}
+          <UCTask2/>
     </div>
 
 
