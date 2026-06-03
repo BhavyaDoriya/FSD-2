@@ -2,7 +2,7 @@
 import React from 'react'
 import { useReducer } from 'react'  
 export default function UseReducer2() {
-    const[state,dispatch]=useReducer(reducer,{n1:"0",n2:"0",op:"add",result:"0"})
+    const[state,dispatch]=useReducer(reducer,{num1:"0",num2:"0",op:"add",result:"0"})
     function reducer(state, action) {
   const num1 = Number(state.num1);
   const num2 = Number(state.num2);

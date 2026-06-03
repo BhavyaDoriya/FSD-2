@@ -19,6 +19,11 @@ import UseReducer2 from './UseReducer2.jsx'
 import UC1 from './UC1.jsx'
 import UC4 from './UC4.jsx'
 import UCTask2 from './UCTask2.jsx'
+import UE1 from './UE1.jsx'
+import UE2 from './UE2.jsx'
+import UE3 from './UE3.jsx'
+import Axios from './Axios.jsx'
+import Axios2 from './Axios2.jsx'
 export default function MainR() {
 
   return (
@@ -92,7 +97,12 @@ export default function MainR() {
           <UseReducer2 /> */}
           {/* <UC1/>
           <UC4/> */}
-          <UCTask2/>
+          {/* <UCTask2/> */}
+          {/* <UE1/> */}
+          {/* <UE2/>
+          <UE3/> */}
+          {/* <Axios /> */}
+          <Axios2 />
     </div>
 
 
