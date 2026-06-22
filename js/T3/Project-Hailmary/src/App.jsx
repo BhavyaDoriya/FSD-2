@@ -128,7 +128,7 @@ return (
     // Use a ProductList component to store product data and display multiple ProductCard components using .map().
     
   */}
-  {/* <ProductList /> */}
+  <ProductList />
 
 
   {/* Event */}
@@ -145,7 +145,7 @@ return (
 
 
   {/*****************************************************************Routing**************************************************************** */}
-  <MainR/>
+  {/* <MainR/> */}
   </>
 
 )

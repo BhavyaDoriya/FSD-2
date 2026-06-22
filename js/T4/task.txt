@@ -1,0 +1,232 @@
+Task -1 
+
+Create a collection named student having fields name, age, standard, percentage. Insert 5 to 10 random documnets in collection.
+
+1)     	Find name of all students having age>5
+
+2)     	Increase the age for all students by 1.
+
+3)     	Arrange all the records in descending order of age.
+
+4)     	Show the name of student who is the oldest student among all students.
+
+5)     	Delete the record of the student if standard is "2nd".
+
+
+
+
+
+b.createCollection("student")
+{ ok: 1 }
+Expedition33> db.student.insertMany([{name:"Jyoti",age:19,standard:"2nd",percentage:90},
+| {name:"raju",age:19,standard:"3rd",percentage:100},
+| {name:"pratham",age:19,standard:"4th",percentage:9},
+| {name:"diya",age:6,standard:"1st",percentage:45}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a38e3d2ed7f127156abc117'),
+    '1': ObjectId('6a38e3d2ed7f127156abc118'),
+    '2': ObjectId('6a38e3d2ed7f127156abc119'),
+    '3': ObjectId('6a38e3d2ed7f127156abc11a')
+  }
+
+ db.student.find({age:{$gt:5}},{name:1,_id:0})
+[
+  { name: 'Jyoti' },
+  { name: 'raju' },
+  { name: 'pratham' },
+  { name: 'diya' }
+]
+
+ db.student.updateMany({},{$inc:{age:1}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+Expedition33> db.student.find({age:{$gt:15}})
+[
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc117'),
+    name: 'Jyoti',
+    age: 20,
+    standard: '2nd',
+    percentage: 90
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc118'),
+    name: 'raju',
+    age: 20,
+    standard: '3rd',
+    percentage: 100
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc119'),
+    name: 'pratham',
+    age: 20,
+    standard: '4th',
+    percentage: 9
+  }
+]
+db.student.find({},{}).sort({age:-1},)
+[
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc117'),
+    name: 'Jyoti',
+    age: 20,
+    standard: '2nd',
+    percentage: 90
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc118'),
+    name: 'raju',
+    age: 20,
+    standard: '3rd',
+    percentage: 100
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc119'),
+    name: 'pratham',
+    age: 20,
+    standard: '4th',
+    percentage: 9
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc11a'),
+    name: 'diya',
+    age: 7,
+    standard: '1st',
+    percentage: 45
+  }
+]
+db.student.find({},{}).sort({age:-1}).limit(1)
+[
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc117'),
+    name: 'Jyoti',
+    age: 20,
+    standard: '2nd',
+    percentage: 90
+  }
+]
+
+db.student.deleteMany({standard:"2nd"})
+{ acknowledged: true, deletedCount: 1 }
+Expedition33> db.student.find({},{})
+[
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc118'),
+    name: 'raju',
+    age: 20,
+    standard: '3rd',
+    percentage: 100
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc119'),
+    name: 'pratham',
+    age: 20,
+    standard: '4th',
+    percentage: 9
+  },
+  {
+    _id: ObjectId('6a38e3d2ed7f127156abc11a'),
+    name: 'diya',
+    age: 7,
+    standard: '1st',
+    percentage: 45
+  }
+]
+
+
+
+
+Task-2
+
+Insert 10 documents with random data with fields _id,brand,price,cat as shown below.
+
+db.product.insertMany([
+
+{_id:1,brand:"samsung",price:29000,cat:"mobile"},
+
+{_id:2,brand:"nokia",price:5000,cat:"mobile"},
+
+{_id:3,brand:"vivo",price:16000,cat:"mobile"},
+
+{_id:4,brand:"samsung",price:60000,cat:"tv"},
+
+{_id:5,brand:"samsung",price:40000,cat:"washing machine"},
+
+{_id:6,brand:"ifb",price:45000,cat:"wasing machine"},
+
+{_id:7,brand:"apple",price:120000,cat:"mobile"},
+
+{_id:8,brand:"oppo",price:20000,cat:"mobile"},
+
+{_id:9,brand:"sony",price:80000,cat:"tv"},
+
+{_id:10,brand:"vivo",price:31000,cat:"mobile"},
+
+])
+
+1)      Display price and brand of product which are of mobile cat.
+
+2)      Increase price of each Samsung products by 1000.
+
+3)      Update all vivo product by adding field quantity and add random value
+
+4)      Display price of products which are of vivo or oppo brand.
+
+5)      Display brand and cat of products which are less than 80000 and greater than or equal to 30000.
+
+ db.createCollection('mobile')
+{ ok: 1 }
+Expedition33> db.mobile.insertMany([
+|
+| {_id:1,brand:"samsung",price:29000,cat:"mobile"},
+|
+| {_id:2,brand:"nokia",price:5000,cat:"mobile"},
+|
+| {_id:3,brand:"vivo",price:16000,cat:"mobile"},
+|
+| {_id:4,brand:"samsung",price:60000,cat:"tv"},
+|
+| {_id:5,brand:"samsung",price:40000,cat:"washing machine"},
+|
+| {_id:6,brand:"ifb",price:45000,cat:"wasing machine"},
+|
+| {_id:7,brand:"apple",price:120000,cat:"mobile"},
+|
+| {_id:8,brand:"oppo",price:20000,cat:"mobile"},
+|
+| {_id:9,brand:"sony",price:80000,cat:"tv"},
+|
+| {_id:10,brand:"vivo",price:31000,cat:"mobile"},
+|
+| ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 1,
+    '1': 2,
+    '2': 3,
+    '3': 4,
+    '4': 5,
+    '5': 6,
+    '6': 7,
+    '7': 8,
+    '8': 9,
+    '9': 10
+  }
+}
+db.mobile.find({cat:"mobile"},{price:1,brand:1,_id:0})
+[
+  { brand: 'samsung', price: 29000 },
+  { brand: 'nokia', price: 5000 },
+  { brand: 'vivo', price: 16000 },
+  { brand: 'apple', price: 120000 },
+  { brand: 'oppo', price: 20000 },
+  { brand: 'vivo', price: 31000 }
+]

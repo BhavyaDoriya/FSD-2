@@ -1,0 +1,126 @@
+show dbs
+use nameofdb
+db.dropDatabase()
+Show dbs
+db.createCollection("Student")
+table-->collection 
+column-->document
+row-->field
+db.collection_name.drop()
+db.collection_name.rename
+
+
+
+example:
+command:
+mongosh
+ show dbs
+output:
+admin   40.00 KiB
+config  12.00 KiB
+local   72.00 
+
+command:
+ use Expedition33
+output:
+switched to db Expedition33
+
+command:
+Expedition33> db.createCollection("Characters")
+
+output:
+{ ok: 1 }
+
+command:
+Expedition33> db.Characters.insertOne({name:"Lune", age:25})
+
+output:
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a38dc93ed7f127156abc114')
+}
+
+command:
+db.Characters.insertMany([ {name:'Maelle', status:'strong', age:15}, {name:"Gustave", gender:"Female"}])
+
+output:
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6a38dda5ed7f127156abc115'),
+    '1': ObjectId('6a38dda5ed7f127156abc116')
+  }
+}
+
+Read:
+
+
+command:
+ db.Characters.find({},{name:1})
+(here 1 means yes, 0 means no. hence name:1 will include only name attribute)
+ output:
+[
+  { _id: ObjectId('6a38dc93ed7f127156abc114'), name: 'Lune' },
+  { _id: ObjectId('6a38dda5ed7f127156abc115'), name: 'Maelle' },
+  { _id: ObjectId('6a38dda5ed7f127156abc116'), name: 'Gustave' }
+]
+
+command:
+db.Characters.find({},{name:1,_id:0})
+output:
+[ { name: 'Lune' }, { name: 'Maelle' }, { name: 'Gustave' } ]
+
+
+command:
+ db.Characters.find({name:"Maelle"},{age:1})
+ output:
+[ { _id: ObjectId('6a38dda5ed7f127156abc115'), age: 15 } ]
+
+command:
+db.Characters.findOne({name:'Gustave'})
+
+output:
+{
+  _id: ObjectId('6a38dda5ed7f127156abc116'),
+  name: 'Gustave',
+  gender: 'Female'
+}
+
+
+Aggregation Functions:
+command:
+ db.Characters.find({name:'Gustave'}).count()
+ output:
+1
+
+
+Update:
+command:
+ db.Characters.updateOne({name:"Gustave"},{$set:{gender:"Male"}})
+
+ output:
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+command:
+ db.Characters.find({},{})
+ output:
+[
+  { _id: ObjectId('6a38dc93ed7f127156abc114'), name: 'Lune', age: 25 },
+  {
+    _id: ObjectId('6a38dda5ed7f127156abc115'),
+    name: 'Maelle',
+    status: 'strong',
+    age: 15
+  },
+  {
+    _id: ObjectId('6a38dda5ed7f127156abc116'),
+    name: 'Gustave',
+    gender: 'Male'
+  }
+]
