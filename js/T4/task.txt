@@ -230,3 +230,112 @@ db.mobile.find({cat:"mobile"},{price:1,brand:1,_id:0})
   { brand: 'oppo', price: 20000 },
   { brand: 'vivo', price: 31000 }
 ]
+
+
+Task-3
+
+Consider following student collection:
+[
+  {_id:123433,name: "SSS",age:22},
+  {_id:123434,name: "YYY",age:2},
+  {_id:123435,name: "PPP",age:32},
+]
+Do as directed:
+(1) Update name=”JJJ” and age=40, where age=20 occurs. Insert new document, if record is not found.
+(2) To retrieve age and name fields of documents having names “YYY” & “SSS”. Don’t project _id field.
+
+lec02> db.createCollection('student')
+{ ok: 1 }
+lec02> db.student.insertMany([
+|   {_id:123433,name: "SSS",age:22},
+|   {_id:123434,name: "YYY",age:2},
+|   {_id:123435,name: "PPP",age:32},
+| ])
+{
+  acknowledged: true,
+  insertedIds: { '0': 123433, '1': 123434, '2': 123435 }
+}
+lec02> db.student.updateOne({age:20},{$set:{name:'JJJ',age:40}},{upsert:true})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6a3b5097bdf3eef287080671'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+
+lec02> db.student.find({$or:[{name:"YYY"},{name:"SSS"}]},{name:1,age:1,_id:0})
+[ { name: 'SSS', age: 22 }, { name: 'YYY', age: 2 } ]
+
+
+
+
+
+
+Perform the tasks as asked below.
+
+Create Collection “employees” with following data
+
+[{_id: 1,name: "Eric",age: 30,position: "Full Stack Developer",salary: 60000},
+
+{_id: 2,name: "Erica",age: 35,position: "Intern",salary: 8000},
+
+{_id: 3,name: "Erical",age: 40,position: "UX/UI Designer",salary: 56000},
+
+{_id: 4,name: "treric7",age: 37,position: "Team Leader",salary: 85000},
+
+{_id: 5,name: "Eliza",age: 25,position: "Software Developer",salary: 45000},
+
+{_id: 6,name: "Trian",age: 29,position: "Data Scientist",salary: 75000},
+
+{_id: 7,name: "Elizan",age: 25,position: "Full Stack Developer",salary: 49000}]
+
+1)  Find All Documents:
+
+2)  Find Documents by Position “Full Stack Developer”:
+
+3)  Retrieve name of employees whose age is greater than or equal to 25 and less than or equal to 40.
+
+4)  Retrieve name of the employee with the highest salary.
+
+5)  Retrieve employees with a salary greater than 50000.
+
+6)  Retrieve employees' names and positions, excluding the "_id" field.
+
+7) Count the number of employees who have salary greater than 50000
+
+8) Retrieve employees who are either " Software Developer" or "Full Stack Developer" and are  below 30 years.
+
+9) Increase the salary of an employee who has salary less than 50000 by 10%.
+
+10)  Delete all employees who are older than 50.
+
+11)  Give a 5% salary raise to all "Data Scientist"
+
+12)  Find documents where name like “%an”
+
+13)  Find documents where name like “Eri--” (Case Insensitive)
+
+14)  Find documents where name like “%ric%”
+
+15)  Find documents where name contains only 4 or 5 letters.
+
+16)  Find documents where name must end with digit
+
+db.task4.find({},{})
+db.task4.find({position:"Full Stack Developer"},{})
+db.task4.find({$and:[{age:{$gte:25}},{age:{$lte:40}}]})
+db.task4.find({},{name:1,_id:0}).sort({salary:1}).limit(1)
+db.task4.find({salary:{$gt:50000}})
+db.task4.find({},{name:1,position:1,_id:0})
+db.task4.find({salary:{$gt:50000}}).count()
+db.task4.find({$and:[{$or:[{position:'Software Developer'},{position:"Full Stack Developer"}]},{age:{$lt:30}}]})
+db.task4.updateMany({salary:{$lt:50000}},{$mul:{salary:1.1}})
+db.task4.deleteMany({age:{$gt:50}})
+db.task4.updateMany({position:"Data Scientist"},{$mul:{salary:1.05}})
+db.task4.find({name:/an$/})
+db.task4.find({name:/^Eri/i})
+db.task4.find({name:/ric/})
+db.task4.find({name:/[A-Za-z]{4,5}/})
+db.task4.find({name:/[0-9]$/})
+

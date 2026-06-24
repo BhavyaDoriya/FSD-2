@@ -1,0 +1,13 @@
+Task -2
+
+Map following SQL queries to MongoDB query:
+
+(1) update employee set name="TTT" where age not in {12,33,44,55}
+
+(2) select count(*) from employee where age<>23
+
+(3) update employee set age=age+10
+
+db.employee.updateMany({age:{$nin:[12,33,44,55]}},{name:"TTT"})
+db.employee.find({age:{ne:23}}).count()
+db.employee.updateMany({},{$inc:{age:10}})
