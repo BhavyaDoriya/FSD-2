@@ -1,0 +1,69 @@
+db.createCollection("student")
+db.student.insertMany([{name:"Zack",city:"Ahmedabad",marks:85},{name:"Jil",city:"Surat",marks:70},{name:"Riya",city:"Ahmedabad",marks:90},{name:"Amit",city:"Surat",marks:80}])
+db.student.aggregate([{$match:{city:"Ahmedabad"}}])
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f04'),
+  name: 'Zack',
+  city: 'Ahmedabad',
+  marks: 85
+}
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f06'),
+  name: 'Riya',
+  city: 'Ahmedabad',
+  marks: 90
+}
+
+db.student.aggregate([{$group:{_id:'$city',Total:{$sum:1}}}])
+{
+  _id: 'Surat',
+  Total: 2
+}
+db.student.aggregate([{$group:{_id:'$city',Total:{$sum:1}}}])
+{
+  _id: 'Surat',
+  Total: 2
+}
+db.student.aggregate([{$group:{_id:'$city',Total:{$avg:'$marks'}}}])
+{
+  _id: 'Ahmedabad',
+  Total: 87.5
+}
+{
+  _id: 'Surat',
+  Total: 75
+}
+db.student.aggregate([{$sort:{marks:-1}}])
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f06'),
+  name: 'Riya',
+  city: 'Ahmedabad',
+  marks: 90
+}
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f04'),
+  name: 'Zack',
+  city: 'Ahmedabad',
+  marks: 85
+}
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f04'),
+  name: 'Zack',
+  city: 'Ahmedabad',
+  marks: 85
+}
+db.student.aggregate([{$project:{name:1,mycity:'$city'}}])
+{
+  _id: ObjectId('6a420ffdfcf43ba5f8306f04'),
+  name: 'Zack',
+  mycity: 'Ahmedabad'
+}
+
+
+db.student.aggregate([{$group:{_id:'$city',avgmark:{$avg:'$marks'}}},{$sort:{avgmark:-1}},{$project:{name:1,avgmark:1,_id:0}}])
+{
+  avgmark: 87.5
+}
+{
+  avgmark: 87.5
+}

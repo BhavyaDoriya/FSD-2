@@ -1,0 +1,140 @@
+Task-1
+
+db.students.insertMany([
+
+  { name: "Aarav", city: "Ahmedabad", marks: 88 },
+
+  { name: "Diya", city: "Surat", marks: 76 },
+
+  { name: "Vivaan", city: "Vadodara", marks: 91 },
+
+  { name: "Anaya", city: "Rajkot", marks: 84 },
+
+  { name: "Krish", city: "Ahmedabad", marks: 67 },
+
+  { name: "Meera", city: "Bhavnagar", marks: 95 },
+
+  { name: "Rohan", city: "Surat", marks: 73 },
+
+  { name: "Kavya", city: "Jamnagar", marks: 89 },
+
+  { name: "Yash", city: "Gandhinagar", marks: 81 },
+
+  { name: "Ishita", city: "Ahmedabad", marks: 78 }
+
+]);
+
+Case-1
+Using the Aggregation Framework, perform the following operations:
+
+1.     Group students based on their city.
+
+2.     Calculate the average marks of students in each city.
+
+3.     Sort the result in descending order of average marks.
+
+4.     Display only the city name and the average marks.
+
+Case-2
+
+Using the Aggregation Framework, perform the following operations:
+
+1.     Select students whose marks are greater than or equal to 80.
+
+2.     Group the selected students by city.
+
+3.     Calculate the total marks obtained by students in each city.
+
+4.     Sort the result in descending order of total marks.
+
+5.     Display only the city name and total marks.
+
+case-1
+db use lec03task
+db.createCollection("students")
+{ ok: 1 }
+db.students.insertMany([
+
+  { name: "Aarav", city: "Ahmedabad", marks: 88 },
+
+  { name: "Diya", city: "Surat", marks: 76 },
+
+  { name: "Vivaan", city: "Vadodara", marks: 91 },
+
+  { name: "Anaya", city: "Rajkot", marks: 84 },
+
+  { name: "Krish", city: "Ahmedabad", marks: 67 },
+
+  { name: "Meera", city: "Bhavnagar", marks: 95 },
+
+  { name: "Rohan", city: "Surat", marks: 73 },
+
+  { name: "Kavya", city: "Jamnagar", marks: 89 },
+
+  { name: "Yash", city: "Gandhinagar", marks: 81 },
+
+  { name: "Ishita", city: "Ahmedabad", marks: 78 }
+
+]);
+db.students.aggregate([{$group:{'_id':'city',avgmark:{$avg:'$marks'}}},{$sort:{avgmark:-1}},{$project:{avgmark:1,city:'$_id',_id:0}}])
+
+
+case-2
+db.students.aggregate([{$match:{marks:{$gt:80}}},{$group:{_id:'$city',totalmark:{$sum:'$marks'}}},{$sort:{totalmark:-1}},{$project:{city:'$_id',totalmark:1,_id:0}}])
+{
+  totalmark: 95,
+  city: 'Bhavnagar'
+}
+{
+  totalmark: 91,
+  city: 'Vadodara'
+}
+...so on
+
+Task-2 Create Collection orders and solve the question using the concept of aggregation.
+
+db.orders.insertMany([
+{_id:1, customer:"Jay", product:"Laptop", category:"Electronics", amount:55000},
+{_id:2, customer:"Vijay", product:"Mobile", category:"Electronics", amount:25000},
+{_id:3, customer:"Sanjay", product:"Shoes", category:"Fashion", amount:3000},
+{_id:4, customer:"Amit", product:"T-Shirt", category:"Fashion", amount:1500},
+{_id:5, customer:"Neha", product:"Refrigerator", category:"Electronics", amount:40000},
+{_id:6, customer:"Karan", product:"Watch", category:"Fashion", amount:5000},
+{_id:7, customer:"Riya", product:"Microwave", category:"Electronics", amount:12000}
+])
+
+ 
+
+Question 1
+
+Calculate the average order amount for each category. Sort the result in descending order of average amount and display only category and average amount.
+
+db.orders.aggregate([{$group:{_id:'$category',avgamt:{$avg:'$amount'}}},{$sort:{avgamount:-1}},{$project:{category:'$_id',avgamt:1,_id:0}}])
+
+Question 2
+
+Calculate the total sales amount for each category. Sort the result in descending order of total sales and display only category and total sales.
+
+db.orders.aggregate([{$group:{_id:'$category',total:{$sum:'$amount'}}},{$sort:{total:-1}},{$project:{category:'$_id',total:1,_id:0}}])
+
+
+Question 3
+
+Find the highest order amount for each category. Sort the result in descending order of highest order amount and display only the category and highest order amount.
+
+db.orders.aggregate([{$group:{_id:'$category',maxamt:{$max:'$amount'}}},{$sort:{maxamt:-1}},{$project:{category:'$_id',maxamt:1,_id:0}}])
+
+
+Question 4
+
+Count the number of orders in each category. Display only the category and total number of orders.
+
+db.orders.aggregate([{$group:{_id:'$category',numoforders:{$sum:1}}},{$project:{category:'$_id',numoforders:1,_id:0}}])
+
+
+Question 5
+
+Find the minimum order amount for each category. Display only the category and minimum order amount.
+
+db.orders.aggregate([{$group:{_id:'$category',minamt:{$min:'$amount'}}},{$project:{category:'$_id',minamt:1,_id:0}}])
+
